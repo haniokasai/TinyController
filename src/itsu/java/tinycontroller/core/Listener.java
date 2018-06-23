@@ -31,6 +31,7 @@ public class Listener implements WiimoteListener {
 
     private boolean isAPressing = false;
     private boolean baseSetting = false;
+    private boolean isDownPressing = false;
 
     public Listener() {
         try {
@@ -60,19 +61,27 @@ public class Listener implements WiimoteListener {
             robot.keyRelease(KeyEvent.VK_ESCAPE);
 
         } else if(arg0.isButtonPlusJustPressed()) {
-            robot.keyPress(KeyEvent.VK_T);
-            isAPressing = true;
+        	if(isDownPressing) {
+        		robot.mouseWheel(1);
+        	} else {
+        		 robot.keyPress(KeyEvent.VK_T);
+                 isAPressing = true;
+        	}
 
         } else if(arg0.isButtonPlusJustReleased()) {
-            robot.keyRelease(KeyEvent.VK_T);
-            isAPressing = false;
+        	robot.keyRelease(KeyEvent.VK_T);
+    		isAPressing = false;
 
         } else if(arg0.isButtonMinusJustPressed()) {
-            robot.keyPress(KeyEvent.VK_E);
-            if(isAPressing) {
-            	baseSetting = true;
-            	Toolkit.getDefaultToolkit().beep();
-            }
+        	if(isDownPressing) {
+        		robot.mouseWheel(-1);
+        	} else {
+        		robot.keyPress(KeyEvent.VK_E);
+                if(isAPressing) {
+                	baseSetting = true;
+                	Toolkit.getDefaultToolkit().beep();
+                }
+        	}
 
         } else if(arg0.isButtonMinusJustReleased()) {
             robot.keyRelease(KeyEvent.VK_E);
@@ -115,16 +124,18 @@ public class Listener implements WiimoteListener {
             robot.keyRelease(KeyEvent.VK_S);
 
         } else if(arg0.isButtonUpJustPressed()) {
-            robot.keyPress(KeyEvent.VK_A);
+        	robot.keyPress(KeyEvent.VK_A);
 
         } else if(arg0.isButtonUpJustReleased()) {
             robot.keyRelease(KeyEvent.VK_A);
 
         } else if(arg0.isButtonDownJustPressed()) {
             robot.keyPress(KeyEvent.VK_D);
+            isDownPressing = true;
 
         } else if(arg0.isButtonDownJustReleased()) {
             robot.keyRelease(KeyEvent.VK_D);
+            isDownPressing = false;
 
         }
     }
