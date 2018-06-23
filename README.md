@@ -15,7 +15,7 @@ Minecraft Windows 10 EditionをWiiリモコンを使ってプレイできるツ�
 +と-ボタンを同時に押す（+を押しながら-を押すと良い）と、視点移動が無くなるのでマウスを使って視点を中心を合わせて、基準としたい位置にWiiリモコンを合わせてAボタンを押す。  
   
 ## 終了の仕方
-+と-ボタンを同時に押し（+を押しながら-を押すと良い）、Bボタンを押す。  
++と-ボタンを同時に押し（+を押しながら-を押すと良い）、ホームボタンを押す。  
   
 # TinyController　(English)
 Play Minecraft Windows 10 Edition with Wii Remote!!
