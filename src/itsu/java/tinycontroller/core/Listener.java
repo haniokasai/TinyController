@@ -46,42 +46,42 @@ public class Listener implements WiimoteListener {
         if(arg0.isButtonHomeJustPressed()) {
             robot.keyPress(KeyEvent.VK_ESCAPE);
             if(baseSetting) {
-            	switch(JOptionPane.showConfirmDialog(new JFrame(), "TinyControllerを終了しますか？")) {
-            		case JOptionPane.CANCEL_OPTION:
-            		case JOptionPane.NO_OPTION:
-            			break;
-            			
-            		case JOptionPane.OK_OPTION:
-            			System.exit(0);
-            			break;
-            	}
+                switch(JOptionPane.showConfirmDialog(new JFrame(), "TinyControllerを終了しますか？")) {
+                    case JOptionPane.CANCEL_OPTION:
+                    case JOptionPane.NO_OPTION:
+                        break;
+
+                    case JOptionPane.OK_OPTION:
+                        System.exit(0);
+                        break;
+                }
             }
 
         } else if(arg0.isButtonHomeJustReleased()) {
             robot.keyRelease(KeyEvent.VK_ESCAPE);
 
         } else if(arg0.isButtonPlusJustPressed()) {
-        	if(isDownPressing) {
-        		robot.mouseWheel(1);
-        	} else {
-        		 robot.keyPress(KeyEvent.VK_T);
+            if(isDownPressing) {
+                robot.mouseWheel(1);
+            } else {
+                 robot.keyPress(KeyEvent.VK_T);
                  isAPressing = true;
-        	}
+            }
 
         } else if(arg0.isButtonPlusJustReleased()) {
-        	robot.keyRelease(KeyEvent.VK_T);
-    		isAPressing = false;
+            robot.keyRelease(KeyEvent.VK_T);
+            isAPressing = false;
 
         } else if(arg0.isButtonMinusJustPressed()) {
-        	if(isDownPressing) {
-        		robot.mouseWheel(-1);
-        	} else {
-        		robot.keyPress(KeyEvent.VK_E);
+            if(isDownPressing) {
+                robot.mouseWheel(-1);
+            } else {
+                robot.keyPress(KeyEvent.VK_E);
                 if(isAPressing) {
-                	baseSetting = true;
-                	Toolkit.getDefaultToolkit().beep();
+                    baseSetting = true;
+                    Toolkit.getDefaultToolkit().beep();
                 }
-        	}
+            }
 
         } else if(arg0.isButtonMinusJustReleased()) {
             robot.keyRelease(KeyEvent.VK_E);
@@ -124,7 +124,7 @@ public class Listener implements WiimoteListener {
             robot.keyRelease(KeyEvent.VK_S);
 
         } else if(arg0.isButtonUpJustPressed()) {
-        	robot.keyPress(KeyEvent.VK_A);
+            robot.keyPress(KeyEvent.VK_A);
 
         } else if(arg0.isButtonUpJustReleased()) {
             robot.keyRelease(KeyEvent.VK_A);
@@ -160,12 +160,10 @@ public class Listener implements WiimoteListener {
         int citaY = (int) Math.round(Math.atan(force.getY() / Math.sqrt(Math.pow(force.getX(), 2) + Math.pow(force.getZ(), 2))) * 180 / 3.14) - BaseData.baseYCita;
         int citaZ = (int) Math.round(Math.atan(force.getZ() / Math.sqrt(Math.pow(force.getX(), 2) + Math.pow(force.getY(), 2))) * 180 / 3.14) - BaseData.baseZCita;
 
-        //System.out.println((int) (Math.PI * 6 * citaZ / 360) * 30);
-
         if(!baseSetting) robot.mouseMove(mouseX - (int) (Math.PI * 6 * citaY / 360) * 10, mouseY + (int) (Math.PI * 6 * citaZ / 360) * 10);
 
     }
-    
+
     @Override  public void onDisconnectionEvent(DisconnectionEvent arg0) {}
     @Override public void onClassicControllerInsertedEvent(ClassicControllerInsertedEvent arg0) {}
     @Override public void onClassicControllerRemovedEvent(ClassicControllerRemovedEvent arg0) {}
